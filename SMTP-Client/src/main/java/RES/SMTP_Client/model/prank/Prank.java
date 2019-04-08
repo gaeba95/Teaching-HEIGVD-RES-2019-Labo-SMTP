@@ -30,7 +30,7 @@ public class Prank {
 	}
 	
 	public void addWitnessRecipients(List<Person> witness) {
-		victimRecipients.addAll(witness);
+		witnessRecipients.addAll(witness);
 	}
 
 	public List<Person> getVictimRecipients() {
@@ -48,7 +48,7 @@ public class Prank {
 	public Message generateMessage() {
 		Message msg = new Message();
 		
-		msg.setBody(this.message + "\r\n" + victimSender.getFirstname());
+		msg.setBody(this.message + "\r\n");
 		
 		String[] to = victimRecipients
 				.stream()
