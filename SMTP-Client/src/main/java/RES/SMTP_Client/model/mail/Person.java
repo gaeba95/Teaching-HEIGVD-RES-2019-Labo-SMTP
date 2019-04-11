@@ -34,8 +34,8 @@ public class Person {
 
 	/**
 	 * Finds the lastname and the firstname of a person with its address.
-	 * Example : gaetan.bacso@test.ch --> first name Gaetan, last name Bacso
-	 * @param address
+	 * Example : gaetan.bacso@test.ch : first name Gaetan, last name Bacso
+	 * @param address The address of the person
 	 */
 	public Person(String address) {
 		this.address = address;

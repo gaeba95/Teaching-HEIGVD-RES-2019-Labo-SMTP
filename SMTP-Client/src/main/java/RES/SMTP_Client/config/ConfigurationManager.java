@@ -39,13 +39,18 @@ public class ConfigurationManager implements IConfigurationManager {
 	
 	/**
 	 * Constructor of the class. Get all configuration.
+	 * The directory configuration must contains files
+	 * 		victims.utf8
+	 * 		messages.utf8
+	 * 		config.properties
 	 * 
+	 * @param path : path of the configuration directory.
 	 * @throws IOException
 	 */
-	public ConfigurationManager() throws IOException {
-		victims = loadAddressesFromFile("./configs/victims.utf8");
-		messages = loadMessagesFromFile("./configs/messages.utf8");
-		loadProperties("./configs/config.properties");
+	public ConfigurationManager(String path) throws IOException {
+		victims = loadAddressesFromFile(path + "victims.utf8");
+		messages = loadMessagesFromFile(path + "messages.utf8");
+		loadProperties(path + "config.properties");
 	}
 	
 	/**

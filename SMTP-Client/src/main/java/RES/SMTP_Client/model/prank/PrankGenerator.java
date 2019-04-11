@@ -25,7 +25,7 @@ import RES.SMTP_Client.smtp.SmtpClient;
 /**
  * This class generates a list of pranks by looking into the configs/messages.utf8 file.
  *
- * @authors Bacso Gaetan and Dutu Launay Marion
+ * @author Bacso Gaetan and Dutu Launay Marion
  */
 public class PrankGenerator {
 	private static final Logger LOG = Logger.getLogger(SmtpClient.class.getName());
