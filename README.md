@@ -1,61 +1,44 @@
-# Teaching-HEIGVD-RES-2019-Labo-SMTP
+# TCP client application with SMTP protocol
 
-## Objectives
+Authors : Gaetan Bacso et Marion Dutu Launay
 
-In this lab, you will develop a client application (TCP) in Java. This client application will use the Socket API to communicate with an SMTP server. The code that you write will include a **partial implementation of the SMTP protocol**. These are the objectives of the lab:
+## Description
 
-* Make practical experiments to become familiar with the **SMTP protocol**. After the lab, you should be able to use a command line tool to **communicate with an SMTP server**. You should be able to send well-formed messages to the server, in order to send emails to the address of your choice.
+This repository contains a TCP client application in Java. It is designed to use the Socket API to communicate with an SMTP server. The code also includes a partial implementation of the SMTP protocol.
 
-* Understand the notions of **test double** and **mock server**, which are useful when developing and testing a client-server application. During the lab, you will setup and use such a **mock server**.
+The client application automatically plays pranks on a list of victims. The user of the app has to define (by editing the 3 config files in the folder "configs") : 
+- a list of the e-mails addresses of the victims
+- how many groups of victims should be formed in a given campaign
+- a list of e-mail messages to be sent
 
-* Understand what it means to **implement the SMTP protocol** and be able to send e-mail messages, by working directly on top of the Socket API (i.e. you are not allowed to use a SMTP library).
-
-* **See how easy it is to send forged e-mails**, which appear to be sent by certain people but in reality are issued by malicious users.
-
-* **Design a simple object-oriented model** to implement the functional requirements described in the next paragraph.
-
-
-## Functional requirements
-
-Your mission is to develop a client application that automatically plays pranks on a list of victims:
-
-* The user should be able to **define a list of victims** (concretely, you should be able to create a file containing a list of e-mail addresses).
-* The user should be able to **define how many groups of victims should be formed** in a given campaign. In every group of victims, there should be 1 sender and at least 2 recipients (i.e. the minimum size for a group is 3).
-* The user should be able to **define a list of e-mail messages**. When a prank is played on a group of victims, then one of these messages should be selected. **The mail should be sent to all group recipients, from the address of the group sender**. In other words, the recipient victims should be lead to believe that the sender victim has sent them.
-
-## Constraints
-
-- The goal is for you to work at the wire protocol level (with the Socket API). Therefore, you CANNOT use a library that takes care of the protocol details. You have to work with the input and output streams.
-- The program must be configurable: the addresses, groups, messages CANNOT be hard-coded in the program and MUST be managed in config files.
+In every group of victim, there should be 1 sender and at least 2 recipients, for a minimum size of 3. When a prank is played on a group of victims, then one of the messages from the list is selected. The prank is sent to all group recipients, from the address of the group sender, so the recipient victims are lead to believe that the sender victim has sent them.
 
 
-## Example
+## Setting up a mock SMTP server with Docker
 
-Consider that your program generates a group G1. The group sender is Bob. The group recipients are Alice, Claire and Peter. When the prank is played on group G1, then your program should pick one of the fake messages. It should communicate with an SMTP server, so that Alice, Claire and Peter receive an e-mail, which appears to be sent by Bob.
+To simulate a mock SMTP server, we used MockMock server (available [here](https://github.com/tweakers/MockMock). This tool is a cross-platform SMTP server built on Java and it allows you to test if outgoing e-mails are sent (without actually sending them) and to see what they look like. It provides a simple web interface that displays the e-mails that you have sent and their exact content. This way, you can be sure that your outgoing e-mails will not reach customers or users by accident.
+To set it up, you have to download the jar file from the link above and run it manually.
 
-## Teams
 
-You may work in teams of 2 students.
+## Configure tool and run prank campaign
 
-## Deliverables
+First, you need to clone this repository to get the code files. Then, as mentioned in the description above, the user must edit the 3 config files in the configs directory to send pranks :
+- **config.properties** contains the SMTP server address (you can leave its default value (localhost)), the SMTP server port, the number of groups that must be formed with the victims addresses and finally the e-mail of the person that will be in copy of all the pranks.
+- **messages.utf8** contains all the messages that will be sent to the victims. Every message must begin with the line : `Subject: <subject>` and must be separated with `==`.
+- **victims.utf8** is the file that contains the e-mail addresses of the victims. The groups are automatically formed by the application, depending of the number given in the first config file mentioned above.
 
-You will deliver the results of your lab in a GitHub repository. You do not have a fork a specific repo, you can create one from scratch.
+All the pranks are automatically sent when you run the application. You can see the result in the MockMock server interface webpage : just type `localhost:8282` in your favourite browser, after having set up and run the MockMock server with its jar file.
 
-Your repository should contain both the source code of your Java project and your report. Your report should be a single `README.md` file, located at the root of your repository. The images should be placed in a `figures` directory.
+## Implementation
+*document the key aspects of your code. It is probably a good idea to start with a class diagram. Decide which classes you want to show (focus on the important ones) and describe their responsibilities in text. It is also certainly a good idea to include examples of dialogues between your client and an SMTP server (maybe you also want to include some screenshots here)*
 
-Your report MUST include the following sections:
+Here is a class diagram to show what the classes of our program look like, and their depedencies with each other :
 
-* **A brief description of your project**: if people exploring GitHub find your repo, without a prior knowledge of the RES course, they should be able to understand what your repo is all about and whether they should look at it more closely.
+![UML class diagram](https://github.com/gaeba95/Teaching-HEIGVD-RES-2019-Labo-SMTP/SMTP-Client/figures/UML.png)
 
-* **Instructions for setting up a mock SMTP server (with Docker)**. The user who wants to experiment with your tool but does not really want to send pranks immediately should be able to use a mock SMTP server. For people who are not familiar with this concept, explain it to them in simple terms. Explain which mock server you have used and how you have set it up.
+If you wish to look deeper into the code, here is what you need to know. We can split the job of our Java classes in 3 different categories :
+- **Getting configuration data** : ConfigurationManager
+- **Implementing application-specific business logic** : Prank, Group, Message, Person, PrankGenerator
+- **Implementing SMTP protocol and sending e-mail messages** : SmtpClient
 
-* **Clear and simple instructions for configuring your tool and running a prank campaign**. If you do a good job, an external user should be able to clone your repo, edit a couple of files and send a batch of e-mails in less than 10 minutes.
-
-* **A description of your implementation**: document the key aspects of your code. It is probably a good idea to start with a class diagram. Decide which classes you want to show (focus on the important ones) and describe their responsibilities in text. It is also certainly a good idea to include examples of dialogues between your client and an SMTP server (maybe you also want to include some screenshots here).
-## References
-
-* [MockMock server](<https://github.com/tweakers/MockMock>) on GitHub
-* The [mailtrap](<https://mailtrap.io/>) online service for testing SMTP
-* The [SMTP RFC](<https://tools.ietf.org/html/rfc5321#appendix-D>), and in particular the [example scenario](<https://tools.ietf.org/html/rfc5321#appendix-D>)
-* Testing SMTP with TLS: `openssl s_client -connect smtp.mailtrap.io:2525 -starttls smtp -crl`
-
+The class MainRobot contains the main function that runs the program.
