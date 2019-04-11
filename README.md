@@ -76,5 +76,5 @@ Here is an example of a the dialogue between the client and the mock SMTP server
 
 To have more informations about the program classes see our documentation :
 
-[Documentation]: https://google.com	"Documentation"
+[Documentation]( https://gaeba95.github.io/Teaching-HEIGVD-RES-2019-Labo-SMTP/)
 
