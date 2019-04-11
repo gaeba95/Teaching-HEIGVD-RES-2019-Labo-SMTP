@@ -1,5 +1,24 @@
+/**
+ * Author   : Bacso Gaetan and Dutu Launay Marion
+ * Source   : Olivier Liechti (MailRobot)
+ * File     : Message.java
+ * Compiler and executer :
+ *   	javac 1.8.0_201
+ *      java version "1.8.0_201"
+ *      Java(TM) SE Runtime Environment (build 1.8.0_201-b09)
+ *      Java HotSpot(TM) 64-Bit Server VM (build 25.201-b09, mixed mode)
+
+ */
+
 package RES.SMTP_Client.model.mail;
 
+/**
+ * This class is useful to create messages and contains all of the informations that can be included in a message :
+ * sender, recipient, cc recipients, bcc recipients, subject and body of the message. It has a setter and a getter for
+ * each of these attributes.
+ *
+ * @author Bacso Gaetan and Dutu Launay Marion
+ */
 public class Message {
 	private String from;
 	private String[] to = new String[0];
@@ -55,7 +74,5 @@ public class Message {
 	public void setBody(String body) {
 		this.body = body;
 	}
-	
-	
 	
 }
