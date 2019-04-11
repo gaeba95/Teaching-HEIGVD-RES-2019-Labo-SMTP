@@ -34,7 +34,7 @@ All the pranks are automatically sent when you run the application. You can see 
 
 Here is a class diagram to show what the classes of our program look like, and their depedencies with each other :
 
-![UML class diagram](https://github.com/gaeba95/Teaching-HEIGVD-RES-2019-Labo-SMTP/figures/UML.png)
+![UML diagram](https://github.com/gaeba95/Teaching-HEIGVD-RES-2019-Labo-SMTP/blob/master/figures/UML.png)
 
 If you wish to look deeper into the code, here is what you need to know. We can split the job of our Java classes in 3 different categories :
 - **Getting configuration data** : ConfigurationManager
