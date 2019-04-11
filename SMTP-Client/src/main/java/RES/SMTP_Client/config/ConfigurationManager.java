@@ -1,5 +1,6 @@
 /**
  * Author   : Bacso Gaetan and Dutu Launay Marion
+ * Source   : Olivier Liechti (MailRobot)
  * File     : ConfigurationManager.java
  * Compiler and executer : 
  * 		javac 1.8.0_201

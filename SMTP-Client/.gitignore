@@ -1,6 +1,6 @@
 /target/
-SMTP-Client/.classpath
-SMTP-Client/.project
-SMTP-Client/.settings/
-SMTP-Client/.idea
-SMTP-Client/SMTP-Client.iml
+.classpath
+.project
+.settings/
+.idea
+SMTP-Client.iml
