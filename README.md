@@ -34,7 +34,7 @@ All the pranks are automatically sent when you run the application. You can see 
 
 Here is a class diagram to show what the classes of our program look like, and their depedencies with each other :
 
-![UML class diagram](https://github.com/gaeba95/Teaching-HEIGVD-RES-2019-Labo-SMTP/SMTP-Client/figures/UML.png)
+![UML diagram](https://github.com/gaeba95/Teaching-HEIGVD-RES-2019-Labo-SMTP/blob/master/figures/UML.png)
 
 If you wish to look deeper into the code, here is what you need to know. We can split the job of our Java classes in 3 different categories :
 - **Getting configuration data** : ConfigurationManager
@@ -42,3 +42,7 @@ If you wish to look deeper into the code, here is what you need to know. We can 
 - **Implementing SMTP protocol and sending e-mail messages** : SmtpClient
 
 The class MainRobot contains the main function that runs the program.
+
+Here is an example of a the dialogue between the client and the mock SMTP server (on the left, the program executed on my IDE that shows what is sent to the server, and on the right the MockMock server running in a terminal, showing what is received by it).
+
+![Communication](https://github.com/gaeba95/Teaching-HEIGVD-RES-2019-Labo-SMTP/blob/master/figures/Com.png)
