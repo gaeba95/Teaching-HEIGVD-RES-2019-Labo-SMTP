@@ -42,3 +42,7 @@ If you wish to look deeper into the code, here is what you need to know. We can 
 - **Implementing SMTP protocol and sending e-mail messages** : SmtpClient
 
 The class MainRobot contains the main function that runs the program.
+
+Here is an example of a the dialogue between the client and the mock SMTP server (on the left, the program executed on my IDE that shows what is sent to the server, and on the right the MockMock server running in a terminal, showing what is received by it).
+
+![Communication](https://github.com/gaeba95/Teaching-HEIGVD-RES-2019-Labo-SMTP/blob/master/figures/Com.png)
