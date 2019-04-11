@@ -1,3 +1,13 @@
+/**
+ * Author   : Bacso Gaetan and Dutu Launay Marion
+ * File     : ConfigurationManager.java
+ * Compiler and executer : 
+ * 		javac 1.8.0_201
+ *      java version "1.8.0_201"
+ *      Java(TM) SE Runtime Environment (build 1.8.0_201-b09)
+ *      Java HotSpot(TM) 64-Bit Server VM (build 25.201-b09, mixed mode)
+
+ */
 package RES.SMTP_Client.config;
 
 import java.io.BufferedReader;
@@ -10,6 +20,14 @@ import java.util.Properties;
 
 import RES.SMTP_Client.model.mail.Person;
 
+/**
+ * This class parse the configuration files and store it.
+ * It get the addresses of the victims, the configuration of the server,
+ * the messages of pranks, the number of groups and the witnesses CC.
+ * 
+ * @author Bacso Gaetan and Dutu Launay Marion
+ *
+ */
 public class ConfigurationManager implements IConfigurationManager {
 	private String smtpServerAddress;
 	private int smtpServerPort;
@@ -18,12 +36,24 @@ public class ConfigurationManager implements IConfigurationManager {
 	private int numberOfGroups;
 	private List<Person> witnessesToCC;
 	
+	/**
+	 * Constructor of the class. Get all configuration.
+	 * 
+	 * @throws IOException
+	 */
 	public ConfigurationManager() throws IOException {
 		victims = loadAddressesFromFile("./configs/victims.utf8");
 		messages = loadMessagesFromFile("./configs/messages.utf8");
 		loadProperties("./configs/config.properties");
 	}
 	
+	/**
+	 * Load the messages of pranks from a file.
+	 * 
+	 * @param filename : path of the file
+	 * @return List of messages
+	 * @throws IOException
+	 */
 	private List<String> loadMessagesFromFile(String filename) throws IOException {
 		List<String> result;
 		try(FileInputStream fis = new FileInputStream(filename)){
@@ -46,6 +76,13 @@ public class ConfigurationManager implements IConfigurationManager {
 		return result;
 	}
 
+	/**
+	 * Load addresses of the victims from a file.
+	 * 
+	 * @param filename : path of the file
+	 * @return List of person created with addresses
+	 * @throws IOException
+	 */
 	private List<Person> loadAddressesFromFile(String filename) throws IOException {
 		List<Person> result;
 		try(FileInputStream fis = new FileInputStream(filename)){
@@ -62,6 +99,12 @@ public class ConfigurationManager implements IConfigurationManager {
 		return result;
 	}
 
+	/**
+	 * Load properties from a file. (Server address, server port, number of groups, witnesses)
+	 * 
+	 * @param filename : path to the file
+	 * @throws IOException
+	 */
 	private void loadProperties(String filename) throws IOException {
 		FileInputStream fis = new FileInputStream(filename);
 		Properties properties = new Properties();
@@ -78,34 +121,33 @@ public class ConfigurationManager implements IConfigurationManager {
 		}
 	}
 
+	
 	@Override
 	public List<Person> getVictims() {
-		// TODO Auto-generated method stub
 		return victims;
 	}
 
 	@Override
 	public List<String> getMessages() {
-		// TODO Auto-generated method stub
 		return messages;
 	}
 
 	@Override
 	public List<Person> getWitnessesToCC() {
-		// TODO Auto-generated method stub
 		return witnessesToCC;
 	}
 
 	@Override
 	public int getNumberOfGroups() {
-		// TODO Auto-generated method stub
 		return numberOfGroups;
 	}
 
+	@Override
 	public String getSmtpServerAddress() {
 		return smtpServerAddress;
 	}
 
+	@Override
 	public int getSmtpServerPort() {
 		return smtpServerPort;
 	}
