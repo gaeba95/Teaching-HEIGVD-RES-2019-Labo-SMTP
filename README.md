@@ -40,7 +40,7 @@ All the pranks are automatically sent when you run the application. You can see 
 
 
 
-To use our tools you have to edits this 3 files with the right configuration. After that you can start the jar file contained in the release directory.
+To use our tools you have to edit this 3 files with the right configuration. After that you can start the jar file contained in the release directory.
 
 To start the jar use this command : `java -jar MailRobot.jar --config <path to the config directory>`
 
@@ -57,7 +57,6 @@ You can also use our docker version :
 - IMPORTANT : to run build-image.sh you have to install maven before
 
 ## Implementation
-*document the key aspects of your code. It is probably a good idea to start with a class diagram. Decide which classes you want to show (focus on the important ones) and describe their responsibilities in text. It is also certainly a good idea to include examples of dialogues between your client and an SMTP server (maybe you also want to include some screenshots here)*
 
 Here is a class diagram to show what the classes of our program look like, and their depedencies with each other :
 
